@@ -104,7 +104,7 @@
 
                         <div class="text-center mb-5">
 
-                            <button type="submit" class="btn  btn-danger mt-3 ">Submit</button>
+                            <button type="submit" id="submitbtn" class="btn  btn-danger mt-3 ">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -147,6 +147,7 @@
             var user_err = true;
             var pass_err = true;
             var conpass_err = true;
+            var email_err = true;
             $("#username").keyup(function () {
                 username_check();
 
@@ -181,11 +182,11 @@
                 }
             }
             $("#password").keyup(function () {
-                checkPasswordStrength();
+                password_check();
 
 
             })
-            function checkPasswordStrength() {
+            function password_check() {
                 var number = /([0-9])/;
                 var alphabets = /([a-zA-Z])/;
                 var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
@@ -205,8 +206,7 @@
                         $('#passcheck').focus();
                         $("#passcheck").css("color", "green"
                         )
-                        user_err = false;
-                        return false;
+
                     }
                     else {
                         $("#passcheck").show()
@@ -214,6 +214,8 @@
                         $('#passcheck').focus();
                         $("#passcheck").css("color", "red"
                         )
+                        pass_err = false;
+                        return false;
                     }
                 }
             }
@@ -232,6 +234,7 @@
                     $('#conpasscheck').focus();
                     $("#conpasscheck").css("color", "red"
                     )
+                    conpass_err = false;
                 }
                 else {
                     $("#conpasscheck").hide()
@@ -252,13 +255,23 @@
                     $('#emailcheck').focus();
                     $("#emailcheck").css("color", "red"
                     )
+                    email_err = false
+
                 }
                 else {
                     $("#emailcheck").hide()
                 }
             }
 
-
+            $("#submitbtn").click(function () {
+                user_err = true;
+                pass_err = true;
+                conpass_err = true;
+                email_err = true;
+                if ((user_err == true) && (pass_err == true) && (conpass_err == true) && (email_err == true)) { return true } else {
+                    return false
+                }
+            })
         })
     </script>
 
