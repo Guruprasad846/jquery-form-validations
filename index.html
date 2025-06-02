@@ -54,7 +54,7 @@
                         <div class="mb-3">
 
                             <input type="text" class="form-control" id="username" name="username"
-                                aria-describedby="emailHelp" placeholder="Enter your username" required>
+                                aria-describedby="emailHelp" placeholder="Enter your username">
                             <h5 id="usercheck">
 
                             </h5>
@@ -63,7 +63,7 @@
                         <div class="mb-3">
 
                             <input type="text" class="form-control" id="email" name="username"
-                                aria-describedby="emailHelp" placeholder="Enter your email" required>
+                                aria-describedby="emailHelp" placeholder="Enter your email">
                             <h5 id="emailcheck">
 
                             </h5>
@@ -87,7 +87,7 @@
                         </div> -->
                         <div class="mb-3">
 
-                            <input type="text" class="form-control" id="password" placeholder="Enter Password" required>
+                            <input type="text" class="form-control" id="password" placeholder="Enter Password">
                             <h5 id="passcheck">
 
                             </h5>
@@ -95,7 +95,7 @@
                         <div class="mb-3">
 
                             <input type="text" class="form-control" id="conpassword" placeholder="Confirm password"
-                                autocomplete="off" required>
+                                autocomplete="off">
                             <h5 id="conpasscheck">
 
                             </h5>
@@ -220,12 +220,12 @@
                 }
             }
             $("#conpassword").keyup(function () {
-                conpasscheck();
+                conpass_check();
 
 
 
             })
-            function conpasscheck() {
+            function conpass_check() {
                 var conpass = $("#conpassword").val().trim();
                 var password = $('#password').val().trim();
                 if (password != conpass) {
@@ -241,14 +241,15 @@
                 }
             }
             $("#email").keyup(function () {
-                emailcheck();
+                email_check();
 
 
 
             })
-            function emailcheck() {
+            function email_check() {
                 var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
                 var email = emailPattern.test($('#email').val().trim());
+                console.log(true)
                 if (email != true) {
                     $("#emailcheck").show()
                     $("#emailcheck").html("Enter valid email ex. xyz@gmail.com")
@@ -256,6 +257,7 @@
                     $("#emailcheck").css("color", "red"
                     )
                     email_err = false
+                    return false;
 
                 }
                 else {
@@ -268,6 +270,10 @@
                 pass_err = true;
                 conpass_err = true;
                 email_err = true;
+                username_check()
+                email_check()
+                password_check()
+                conpass_check()
                 if ((user_err == true) && (pass_err == true) && (conpass_err == true) && (email_err == true)) { return true } else {
                     return false
                 }
